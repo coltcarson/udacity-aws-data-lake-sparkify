@@ -19,6 +19,12 @@ def create_spark_session():
     return spark
 
 def process_song_data(spark, input_data, output_data):
+    
+    """
+    Description: Loads JSON song/artist data from S3 bucket and creates temporary view so Spark SQL queries
+    can be run on the dataset(s). Once queried Spark with create parquet files within the output S3 bucket.
+    """
+    
     # get filepath to song data file
     song_data = input_data + 'song_data/A/A/A/*.json'
     
@@ -45,6 +51,12 @@ def process_song_data(spark, input_data, output_data):
     artists_table.write.mode('overwrite').parquet(output_data + 'artists_table/')
 
 def process_log_data(spark, input_data, output_data):
+    
+    """
+    Description: Loads JSON log data from S3 bucket and creates temporary view so Spark SQL queries
+    can be run on the dataset(s). Once queried Spark with create parquet files within the output S3 bucket.
+    """
+    
     # get filepath to log data file
     log_data = input_data + 'log_data/*/*/*.json'
 
